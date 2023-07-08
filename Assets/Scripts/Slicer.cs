@@ -25,8 +25,9 @@ public class Slicer : MonoBehaviour
         if(Time.time > timer + sliceInterval)
         {
             GameObject fruit = fruits[Random.Range(0, fruits.Length)];
-
-            GameObject s = Instantiate(slice, fruit.transform.position, Quaternion.Euler(0, Random.Range(0, 360), 0));
+            Vector3 pp = fruit.transform.position;
+            pp.y = -3.3f;
+            GameObject s = Instantiate(slice, pp, Quaternion.Euler(0, Random.Range(0, 360), 0));
             Slice sl = s.GetComponent<Slice>();
             sl.sliceTime = sliceTime;
             sl.spawnTime = Time.time;
