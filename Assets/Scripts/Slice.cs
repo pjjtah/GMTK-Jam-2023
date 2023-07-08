@@ -10,6 +10,9 @@ public class Slice : MonoBehaviour
     private Renderer r;
     Animator animator;
     public GameObject line;
+
+    public AudioSource audioS;
+    public AudioClip[] clips;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +31,9 @@ public class Slice : MonoBehaviour
             {
                 slashed = true;
                 animator.Play("katana_slice");
+                audioS.clip = clips[Random.Range(0, 1)];
+                audioS.Play();
+
                 Destroy(line);
                 Destroy(gameObject, 0.3f);
             }

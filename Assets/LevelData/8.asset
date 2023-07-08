@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e94e247fecc2ac4ebf625fdf8b927e6, type: 3}
+  m_Name: 8
+  m_EditorClassIdentifier: 
+  level: 8
+  fruitList:
+  - {fileID: 3092132860187832038, guid: 0a3c28cc03829a742a08bb625f5e54d6, type: 3}
+  - {fileID: 549719348652653663, guid: aaf888b05c11fe94ebea75f74e0830f7, type: 3}
+  - {fileID: 8454627584873320913, guid: 2d91a42d0f0a51c47bed79e4cdb36a96, type: 3}
+  - {fileID: 1579807991199187062, guid: 069c19f3088d8a741aecac30119bb3e0, type: 3}
+  powerUps: []
+  fruitAmounts: 0200000002000000020000000200000002000000
+  powerUpAmounts: 
+  slices: 8
+  slicesAtSameTime: 1
+  sliceInterval: 1.25
+  sliceTime: 1.5
+  maxSlices: 1
+  Reversed: 1

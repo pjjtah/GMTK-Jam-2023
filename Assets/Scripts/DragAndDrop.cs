@@ -33,5 +33,9 @@ public class DragAndDrop : MonoBehaviour
     private void OnMouseDrag()
     {
         transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition - mousePosition);
+        Vector3 pos = transform.position;
+        pos = new Vector3(Mathf.Clamp(pos.x, -3.65f, 7.4f), pos.y, Mathf.Clamp(pos.z, -4.11f, 2.09f));
+        transform.position = pos;
+
     }
 }

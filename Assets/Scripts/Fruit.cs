@@ -15,6 +15,8 @@ public class Fruit : MonoBehaviour
     float sliceTime;
     public GameObject splatter;
     private SpriteRenderer spr;
+    public AudioSource audioS;
+    public Slicer slicer;
 
     // Start is called before the first frame update
     void Start()
@@ -63,6 +65,7 @@ public class Fruit : MonoBehaviour
             Quaternion q = Quaternion.LookRotation(other.transform.position);
             Vector3 splPos = transform.position;
             Color v = new Color(0.83f, 1f, 0.81f);
+            float sca = 2.5f;
             switch (fruitNum)
             {
                 case 1:
@@ -72,22 +75,49 @@ public class Fruit : MonoBehaviour
                 case 2:
                     splPos.y = splPos.y - 0.2f;
                     v = new Color(0.83f, 1f, 0.81f);
+                    sca = 2f;
                     break;
                 case 3:
                     splPos.y = splPos.y - 0.1f;
                     v = new Color(1f, 0.79f, 0.43f);
+                    sca = 2f;
+                    break;
+                case 4:
+                    splPos.y = splPos.y - 0.02f;
+                    v = new Color(1f, 0.35f, 0.35f);
+                    sca = 1f;
+                    break;
+                case 5:
+                    splPos.y = splPos.y - 0.02f;
+                    v = new Color(0f, 0.76f, 0.2f);
+                    sca = 1.5f;
                     break;
             }
 
-
+            audioS.Play();
 
             GameObject spl = Instantiate(splatter, splPos,Quaternion.Euler(new Vector3(90f, -other.transform.eulerAngles.y, other.transform.eulerAngles.z)));
             spr = spl.GetComponent<SpriteRenderer>();
+            spl.transform.localScale = new Vector3(sca, sca, sca);
             spr.color = v;
+            Destroy(spl, 2f);
+            slicer.fruits.Remove(gameObject);
+            slicer.FruitDestroyed();
             Destroy(spr, 1.1f);
         }
 
     }
 
+    void clampMovement()
+    {
+        Vector3 position = transform.position;
 
+        float distance = transform.position.z - Camera.main.transform.position.z;
+
+        float leftBorder = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, distance)).x;
+        float rightBorder = Camera.main.ViewportToWorldPoint(new Vector3(1, 0, distance)).x;
+
+        position.x = Mathf.Clamp(position.x, leftBorder, rightBorder);
+        transform.position = position;
+    }
 }
