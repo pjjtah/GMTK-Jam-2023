@@ -24,6 +24,9 @@ public class Player : MonoBehaviour
     public Animator panelAnim;
     bool panelActive;
     public GameObject gameOverPanel;
+    public GameObject sliceImage;
+    public GameObject startPanel;
+    public GameObject endPanel;
 
     public TMP_Text levelText;
 
@@ -32,7 +35,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         HP = 3;
-        state = State.LevelEnd;
+        state = State.Paused;
         Timer = Time.time;
         anim.Play("save_hp");
     }
@@ -42,6 +45,9 @@ public class Player : MonoBehaviour
     {
         switch (state)
         {
+            case State.Paused:
+
+                break;
 
             case State.Start:
                 if(Time.time > Timer + pauseTime)
@@ -51,6 +57,16 @@ public class Player : MonoBehaviour
                 }
                 break;
             case State.Playing:
+
+                if(currentLevel == 19 && slicer.slicesLeft == 0 && Time.time > slicer.timer + levels[currentLevel].sliceTime + 1f)
+                {
+                    anim.Play("ending");
+                    curtains.Play("curtains_close");
+                    endPanel.SetActive(true);
+                    state = State.Paused;
+                    break;
+                }
+
                 if(Reversed && slicer.fruits.Count == 0)
                 {
                     state = State.LevelEnd;
@@ -80,15 +96,16 @@ public class Player : MonoBehaviour
                         HPImages[2].color = new Color(1f, 1f, 1f, 1);
                         HPImages[1].color = new Color(1f, 1f, 1f, 1);
                         HPImages[0].color = new Color(1f, 1f, 1f, 1);
-                        levelText.text = "Level - " + (currentLevel + 1).ToString();
+                        levelText.text = "Level - " + (currentLevel + 2).ToString();
                         panel.SetActive(true);
                         if (levels[currentLevel + 1].Reversed)
                         {
-
+                            sliceImage.SetActive(true);
                             panelAnim.Play("destroy");
                         }
                         else
                         {
+                            sliceImage.SetActive(false);
                             anim.Play("destroy_hp");
                             panelAnim.Play("save");
                         }
@@ -130,6 +147,12 @@ public class Player : MonoBehaviour
                 break;
 
         }
+    }
+
+    public void StartGame()
+    {
+        state = State.LevelEnd;
+        startPanel.SetActive(false);
     }
 
     public void LoseHP()
@@ -182,6 +205,7 @@ public class Player : MonoBehaviour
         Start,
         Playing,
         LevelEnd,
-        GameOver
+        GameOver,
+        Paused
     }
 }

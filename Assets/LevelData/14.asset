@@ -19,11 +19,11 @@ MonoBehaviour:
   - {fileID: 8454627584873320913, guid: 2d91a42d0f0a51c47bed79e4cdb36a96, type: 3}
   - {fileID: 1579807991199187062, guid: 069c19f3088d8a741aecac30119bb3e0, type: 3}
   powerUps: []
-  fruitAmounts: 0200000000000000010000000000000002000000
+  fruitAmounts: 0400000000000000010000000000000004000000
   powerUpAmounts: 
   slices: 1
   slicesAtSameTime: 1
   sliceInterval: 0.5
   sliceTime: 5
-  maxSlices: 2
-  Reversed: 1
+  maxSlices: 4
+  Reversed: 0

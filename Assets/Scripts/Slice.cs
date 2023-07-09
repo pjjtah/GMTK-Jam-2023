@@ -35,7 +35,7 @@ public class Slice : MonoBehaviour
                 audioS.Play();
 
                 Destroy(line);
-                Destroy(gameObject, 0.3f);
+                Destroy(gameObject, 0.4f);
             }
         }
 
